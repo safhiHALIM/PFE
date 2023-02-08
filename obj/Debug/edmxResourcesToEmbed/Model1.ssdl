@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="assuranceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Accident">
+    <Key>
+      <PropertyRef Name="Code Accident" />
+    </Key>
+    <Property Name="Code Accident" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Lieu d'accident" Type="varchar" MaxLength="50" />
+    <Property Name="Date Accident" Type="date" />
+    <Property Name="Description" Type="varchar" MaxLength="50" />
+    <Property Name="ID risques" Type="varchar" MaxLength="50" />
+    <Property Name="Code expert" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Auto">
+    <Key>
+      <PropertyRef Name="Immatriculation" />
+    </Key>
+    <Property Name="Immatriculation" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CIN" Type="varchar" MaxLength="50" />
+    <Property Name="usage de véhicule" Type="varchar" MaxLength="50" />
+    <Property Name="kilométrage annuel" Type="int" />
+    <Property Name="Marque de véhicule" Type="varchar" MaxLength="50" />
+    <Property Name="Modéle de véhicule" Type="varchar" MaxLength="50" />
+    <Property Name="Puissance fiscale" Type="varchar" MaxLength="50" />
+    <Property Name="Nombre de sinistre" Type="int" />
+    <Property Name="Nombre de mois" Type="varchar" MaxLength="50" />
+    <Property Name="date début" Type="date" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="CIN" />
+    </Key>
+    <Property Name="CIN" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nom" Type="varchar" MaxLength="50" />
+    <Property Name="Prénom" Type="varchar" MaxLength="50" />
+    <Property Name="Télé" Type="int" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Sexe" Type="varchar" MaxLength="50" />
+    <Property Name="Code_postale" Type="int" />
+    <Property Name="Adresse" Type="varchar" MaxLength="50" />
+    <Property Name="Ville" Type="varchar" MaxLength="50" />
+    <Property Name="type_d'assurance" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Contrat">
+    <Key>
+      <PropertyRef Name="N contrat" />
+    </Key>
+    <Property Name="N contrat" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Code produit" Type="varchar" MaxLength="50" />
+    <Property Name="N siret" Type="int" />
+    <Property Name="CIN" Type="varchar" MaxLength="50" />
+    <Property Name="Date début" Type="date" />
+    <Property Name="Date fin" Type="date" />
+    <Property Name="Description" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Entreprise">
+    <Key>
+      <PropertyRef Name="N siret" />
+    </Key>
+    <Property Name="N siret" Type="int" Nullable="false" />
+    <Property Name="Nom de société" Type="varchar" MaxLength="50" />
+    <Property Name="forme jurdique" Type="varchar" MaxLength="50" />
+    <Property Name="Code naf" Type="varchar" MaxLength="50" />
+    <Property Name="Secteur d'activité" Type="varchar" MaxLength="50" />
+    <Property Name="Nombre de salariés" Type="int" />
+    <Property Name="Chiffre d'affaires" Type="varchar" MaxLength="50" />
+    <Property Name="Adresse" Type="varchar" MaxLength="50" />
+    <Property Name="Code postale" Type="int" />
+    <Property Name="Ville" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Expert">
+    <Key>
+      <PropertyRef Name="Code expert" />
+    </Key>
+    <Property Name="Code expert" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nom" Type="varchar" MaxLength="50" />
+    <Property Name="Prénom" Type="varchar" MaxLength="50" />
+    <Property Name="Nom de Compagnie" Type="varchar" MaxLength="50" />
+    <Property Name="télé" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="habitation1">
+    <Key>
+      <PropertyRef Name="Code habitation" />
+    </Key>
+    <Property Name="Code habitation" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CIN" Type="varchar" MaxLength="50" />
+    <Property Name="Genre" Type="varchar" MaxLength="50" />
+    <Property Name="Résidence" Type="varchar" MaxLength="50" />
+    <Property Name="Estimation de biens" Type="varchar" MaxLength="50" />
+    <Property Name="Nombre de sinistre" Type="int" />
+    <Property Name="Durée" Type="varchar" MaxLength="50" />
+    <Property Name="Date début" Type="date" />
+  </EntityType>
+  <EntityType Name="Moto">
+    <Key>
+      <PropertyRef Name="Immatriculation" />
+    </Key>
+    <Property Name="Immatriculation" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CIN" Type="varchar" MaxLength="50" />
+    <Property Name="type de véhicule" Type="varchar" MaxLength="50" />
+    <Property Name="cylindrée de moto" Type="varchar" MaxLength="50" />
+    <Property Name="Concerne" Type="varchar" MaxLength="200" />
+    <Property Name="La carte grise" Type="varbinary(max)" />
+    <Property Name="type de permis" Type="varchar" MaxLength="50" />
+    <Property Name="Nombre de sinistre" Type="int" />
+    <Property Name="Nombre de mois" Type="varchar" MaxLength="50" />
+    <Property Name="date début" Type="date" />
+  </EntityType>
+  <EntityType Name="Produit">
+    <Key>
+      <PropertyRef Name="Code de produit" />
+    </Key>
+    <Property Name="Code de produit" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nombre Produit" Type="int" />
+    <Property Name="Description" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Risque diver">
+    <Key>
+      <PropertyRef Name="ID risques" />
+    </Key>
+    <Property Name="ID risques" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="N contrat" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Accident_Expert">
+    <End Role="Expert" Type="Self.Expert" Multiplicity="0..1" />
+    <End Role="Accident" Type="Self.Accident" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Expert">
+        <PropertyRef Name="Code expert" />
+      </Principal>
+      <Dependent Role="Accident">
+        <PropertyRef Name="Code expert" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Accident_Risque diver">
+    <End Role="Risque diver" Type="Self.Risque diver" Multiplicity="0..1" />
+    <End Role="Accident" Type="Self.Accident" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Risque diver">
+        <PropertyRef Name="ID risques" />
+      </Principal>
+      <Dependent Role="Accident">
+        <PropertyRef Name="ID risques" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Auto_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="Auto" Type="Self.Auto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="CIN" />
+      </Principal>
+      <Dependent Role="Auto">
+        <PropertyRef Name="CIN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contrat_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="Contrat" Type="Self.Contrat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="CIN" />
+      </Principal>
+      <Dependent Role="Contrat">
+        <PropertyRef Name="CIN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contrat_Entreprise">
+    <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="0..1" />
+    <End Role="Contrat" Type="Self.Contrat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entreprise">
+        <PropertyRef Name="N siret" />
+      </Principal>
+      <Dependent Role="Contrat">
+        <PropertyRef Name="N siret" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contrat_Produit">
+    <End Role="Produit" Type="Self.Produit" Multiplicity="0..1" />
+    <End Role="Contrat" Type="Self.Contrat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produit">
+        <PropertyRef Name="Code de produit" />
+      </Principal>
+      <Dependent Role="Contrat">
+        <PropertyRef Name="Code produit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_habitation1_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="habitation1" Type="Self.habitation1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="CIN" />
+      </Principal>
+      <Dependent Role="habitation1">
+        <PropertyRef Name="CIN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Moto_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="Moto" Type="Self.Moto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="CIN" />
+      </Principal>
+      <Dependent Role="Moto">
+        <PropertyRef Name="CIN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Risque diver_Contrat">
+    <End Role="Contrat" Type="Self.Contrat" Multiplicity="0..1" />
+    <End Role="Risque diver" Type="Self.Risque diver" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contrat">
+        <PropertyRef Name="N contrat" />
+      </Principal>
+      <Dependent Role="Risque diver">
+        <PropertyRef Name="N contrat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="assuranceModelStoreContainer">
+    <EntitySet Name="Accident" EntityType="Self.Accident" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Auto" EntityType="Self.Auto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Contrat" EntityType="Self.Contrat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Entreprise" EntityType="Self.Entreprise" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Expert" EntityType="Self.Expert" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="habitation1" EntityType="Self.habitation1" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Moto" EntityType="Self.Moto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Produit" EntityType="Self.Produit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Risque diver" EntityType="Self.Risque diver" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Accident_Expert" Association="Self.FK_Accident_Expert">
+      <End Role="Expert" EntitySet="Expert" />
+      <End Role="Accident" EntitySet="Accident" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Accident_Risque diver" Association="Self.FK_Accident_Risque diver">
+      <End Role="Risque diver" EntitySet="Risque diver" />
+      <End Role="Accident" EntitySet="Accident" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Auto_Client" Association="Self.FK_Auto_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Auto" EntitySet="Auto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contrat_Client" Association="Self.FK_Contrat_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Contrat" EntitySet="Contrat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contrat_Entreprise" Association="Self.FK_Contrat_Entreprise">
+      <End Role="Entreprise" EntitySet="Entreprise" />
+      <End Role="Contrat" EntitySet="Contrat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contrat_Produit" Association="Self.FK_Contrat_Produit">
+      <End Role="Produit" EntitySet="Produit" />
+      <End Role="Contrat" EntitySet="Contrat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_habitation1_Client" Association="Self.FK_habitation1_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="habitation1" EntitySet="habitation1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Moto_Client" Association="Self.FK_Moto_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Moto" EntitySet="Moto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Risque diver_Contrat" Association="Self.FK_Risque diver_Contrat">
+      <End Role="Contrat" EntitySet="Contrat" />
+      <End Role="Risque diver" EntitySet="Risque diver" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

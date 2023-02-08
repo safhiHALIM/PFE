@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="assuranceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Accident">
+    <Key>
+      <PropertyRef Name="Code_Accident" />
+    </Key>
+    <Property Name="Code_Accident" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Lieu_d_accident" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Date_Accident" Type="DateTime" Precision="0" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ID_risques" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Code_expert" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Expert" Relationship="Self.FK_Accident_Expert" FromRole="Accident" ToRole="Expert" />
+    <NavigationProperty Name="Risque_diver" Relationship="Self.FK_Accident_Risque_diver" FromRole="Accident" ToRole="Risque_diver" />
+  </EntityType>
+  <EntityType Name="Auto">
+    <Key>
+      <PropertyRef Name="Immatriculation" />
+    </Key>
+    <Property Name="Immatriculation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="usage_de_véhicule" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="kilométrage_annuel" Type="Int32" />
+    <Property Name="Marque_de_véhicule" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Modéle_de_véhicule" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Puissance_fiscale" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre_de_sinistre" Type="Int32" />
+    <Property Name="Nombre_de_mois" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="date_début" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_Auto_Client" FromRole="Auto" ToRole="Client" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="CIN" />
+    </Key>
+    <Property Name="CIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Prénom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Télé" Type="Int32" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sexe" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Code_postale" Type="Int32" />
+    <Property Name="Adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Ville" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="type_d_assurance" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Auto" Relationship="Self.FK_Auto_Client" FromRole="Client" ToRole="Auto" />
+    <NavigationProperty Name="Contrat" Relationship="Self.FK_Contrat_Client" FromRole="Client" ToRole="Contrat" />
+    <NavigationProperty Name="habitation1" Relationship="Self.FK_habitation1_Client" FromRole="Client" ToRole="habitation1" />
+    <NavigationProperty Name="Moto" Relationship="Self.FK_Moto_Client" FromRole="Client" ToRole="Moto" />
+  </EntityType>
+  <EntityType Name="Contrat">
+    <Key>
+      <PropertyRef Name="N_contrat" />
+    </Key>
+    <Property Name="N_contrat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Code_produit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="N_siret" Type="Int32" />
+    <Property Name="CIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Date_début" Type="DateTime" Precision="0" />
+    <Property Name="Date_fin" Type="DateTime" Precision="0" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_Contrat_Client" FromRole="Contrat" ToRole="Client" />
+    <NavigationProperty Name="Entreprise" Relationship="Self.FK_Contrat_Entreprise" FromRole="Contrat" ToRole="Entreprise" />
+    <NavigationProperty Name="Produit" Relationship="Self.FK_Contrat_Produit" FromRole="Contrat" ToRole="Produit" />
+    <NavigationProperty Name="Risque_diver" Relationship="Self.FK_Risque_diver_Contrat" FromRole="Contrat" ToRole="Risque_diver" />
+  </EntityType>
+  <EntityType Name="Entreprise">
+    <Key>
+      <PropertyRef Name="N_siret" />
+    </Key>
+    <Property Name="N_siret" Type="Int32" Nullable="false" />
+    <Property Name="Nom_de_société" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="forme_jurdique" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Code_naf" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Secteur_d_activité" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre_de_salariés" Type="Int32" />
+    <Property Name="Chiffre_d_affaires" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Code_postale" Type="Int32" />
+    <Property Name="Ville" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Contrat" Relationship="Self.FK_Contrat_Entreprise" FromRole="Entreprise" ToRole="Contrat" />
+  </EntityType>
+  <EntityType Name="Expert">
+    <Key>
+      <PropertyRef Name="Code_expert" />
+    </Key>
+    <Property Name="Code_expert" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Prénom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Nom_de_Compagnie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="télé" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Accident" Relationship="Self.FK_Accident_Expert" FromRole="Expert" ToRole="Accident" />
+  </EntityType>
+  <EntityType Name="habitation1">
+    <Key>
+      <PropertyRef Name="Code_habitation" />
+    </Key>
+    <Property Name="Code_habitation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Genre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Résidence" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Estimation_de_biens" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre_de_sinistre" Type="Int32" />
+    <Property Name="Durée" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Date_début" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_habitation1_Client" FromRole="habitation1" ToRole="Client" />
+  </EntityType>
+  <EntityType Name="Moto">
+    <Key>
+      <PropertyRef Name="Immatriculation" />
+    </Key>
+    <Property Name="Immatriculation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="type_de_véhicule" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cylindrée_de_moto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Concerne" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="La_carte_grise" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="type_de_permis" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre_de_sinistre" Type="Int32" />
+    <Property Name="Nombre_de_mois" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="date_début" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_Moto_Client" FromRole="Moto" ToRole="Client" />
+  </EntityType>
+  <EntityType Name="Produit">
+    <Key>
+      <PropertyRef Name="Code_de_produit" />
+    </Key>
+    <Property Name="Code_de_produit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nombre_Produit" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Contrat" Relationship="Self.FK_Contrat_Produit" FromRole="Produit" ToRole="Contrat" />
+  </EntityType>
+  <EntityType Name="Risque_diver">
+    <Key>
+      <PropertyRef Name="ID_risques" />
+    </Key>
+    <Property Name="ID_risques" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="N_contrat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Accident" Relationship="Self.FK_Accident_Risque_diver" FromRole="Risque_diver" ToRole="Accident" />
+    <NavigationProperty Name="Contrat" Relationship="Self.FK_Risque_diver_Contrat" FromRole="Risque_diver" ToRole="Contrat" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_Accident_Expert">
+    <End Role="Expert" Type="Self.Expert" Multiplicity="0..1" />
+    <End Role="Accident" Type="Self.Accident" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Expert">
+        <PropertyRef Name="Code_expert" />
+      </Principal>
+      <Dependent Role="Accident">
+        <PropertyRef Name="Code_expert" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Accident_Risque_diver">
+    <End Role="Risque_diver" Type="Self.Risque_diver" Multiplicity="0..1" />
+    <End Role="Accident" Type="Self.Accident" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Risque_diver">
+        <PropertyRef Name="ID_risques" />
+      </Principal>
+      <Dependent Role="Accident">
+        <PropertyRef Name="ID_risques" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Auto_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="Auto" Type="Self.Auto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="CIN" />
+      </Principal>
+      <Dependent Role="Auto">
+        <PropertyRef Name="CIN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contrat_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="Contrat" Type="Self.Contrat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="CIN" />
+      </Principal>
+      <Dependent Role="Contrat">
+        <PropertyRef Name="CIN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_habitation1_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="habitation1" Type="Self.habitation1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="CIN" />
+      </Principal>
+      <Dependent Role="habitation1">
+        <PropertyRef Name="CIN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Moto_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="Moto" Type="Self.Moto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="CIN" />
+      </Principal>
+      <Dependent Role="Moto">
+        <PropertyRef Name="CIN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contrat_Entreprise">
+    <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="0..1" />
+    <End Role="Contrat" Type="Self.Contrat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entreprise">
+        <PropertyRef Name="N_siret" />
+      </Principal>
+      <Dependent Role="Contrat">
+        <PropertyRef Name="N_siret" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contrat_Produit">
+    <End Role="Produit" Type="Self.Produit" Multiplicity="0..1" />
+    <End Role="Contrat" Type="Self.Contrat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produit">
+        <PropertyRef Name="Code_de_produit" />
+      </Principal>
+      <Dependent Role="Contrat">
+        <PropertyRef Name="Code_produit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Risque_diver_Contrat">
+    <End Role="Contrat" Type="Self.Contrat" Multiplicity="0..1" />
+    <End Role="Risque_diver" Type="Self.Risque_diver" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contrat">
+        <PropertyRef Name="N_contrat" />
+      </Principal>
+      <Dependent Role="Risque_diver">
+        <PropertyRef Name="N_contrat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="assuranceEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accident" EntityType="Self.Accident" />
+    <EntitySet Name="Auto" EntityType="Self.Auto" />
+    <EntitySet Name="Client" EntityType="Self.Client" />
+    <EntitySet Name="Contrat" EntityType="Self.Contrat" />
+    <EntitySet Name="Entreprise" EntityType="Self.Entreprise" />
+    <EntitySet Name="Expert" EntityType="Self.Expert" />
+    <EntitySet Name="habitation1" EntityType="Self.habitation1" />
+    <EntitySet Name="Moto" EntityType="Self.Moto" />
+    <EntitySet Name="Produit" EntityType="Self.Produit" />
+    <EntitySet Name="Risque_diver" EntityType="Self.Risque_diver" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <AssociationSet Name="FK_Accident_Expert" Association="Self.FK_Accident_Expert">
+      <End Role="Expert" EntitySet="Expert" />
+      <End Role="Accident" EntitySet="Accident" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Accident_Risque_diver" Association="Self.FK_Accident_Risque_diver">
+      <End Role="Risque_diver" EntitySet="Risque_diver" />
+      <End Role="Accident" EntitySet="Accident" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Auto_Client" Association="Self.FK_Auto_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Auto" EntitySet="Auto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contrat_Client" Association="Self.FK_Contrat_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Contrat" EntitySet="Contrat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_habitation1_Client" Association="Self.FK_habitation1_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="habitation1" EntitySet="habitation1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Moto_Client" Association="Self.FK_Moto_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Moto" EntitySet="Moto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contrat_Entreprise" Association="Self.FK_Contrat_Entreprise">
+      <End Role="Entreprise" EntitySet="Entreprise" />
+      <End Role="Contrat" EntitySet="Contrat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contrat_Produit" Association="Self.FK_Contrat_Produit">
+      <End Role="Produit" EntitySet="Produit" />
+      <End Role="Contrat" EntitySet="Contrat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Risque_diver_Contrat" Association="Self.FK_Risque_diver_Contrat">
+      <End Role="Contrat" EntitySet="Contrat" />
+      <End Role="Risque_diver" EntitySet="Risque_diver" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
